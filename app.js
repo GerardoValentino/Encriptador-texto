@@ -56,31 +56,35 @@ btnEncrypt.addEventListener('click', () => {
         const vowels = ['a', 'e', 'i', 'o', 'u'];
         
         // Se itera por palabra
-        for(let i of textInput.value.split(" ")) {
-            console.log(i);
-            // se itera el arreglo de vocales
-            for(let vowel of vowels){
-                // Se itera por cada letra de cada palabra
-                for(let letter of i){
-                    if(letter === vowel){
-                        //console.log(encrypt[letter]);
-                        textEncrypted += i.replace(letter, encrypt[letter]);
-                        //console.log(textEncrypted);
-                    } else if(letter !== vowel) {
-                        textEncrypted += letter;
-                    }
+        for(let word of textInput.value.split(" ")) {
+            // console.log(word);
+            for(let letter of word){
+                console.log(letter);
+                if(vowels.includes(letter)){
+                    textEncrypted += encrypt[letter];
+                } else {
+                    textEncrypted += letter;
                 }
             }
+            textEncrypted += ' ';
         }
 
         console.log(textEncrypted);
 
         textOutput.innerHTML = '';
         let cardContent = `
-        <p>Espera rey, aun esta en desarrollo</p>
+        <p>${textEncrypted}</p>
+        <br>
         `;
         textOutput.innerHTML = cardContent;
+
+        // Revisar el codigo del curso de JS para insertar el boton de copiar, era un metodo que se le ponia un atributo llamado "afterbegin" creo XD
     } else {
-        console.log('Nada que mostrar por el momento');
+        cardContent = `
+        <img style="width: 80%; border-radius: 8px;" src="images/astronaut.png" alt="">
+        <h1>Ningún mensaje fue encontrado</h1>
+        <br>
+        <p>Ingresa el texto que deseas encriptar o desencriptar</p>`;
+        textOutput.innerHTML = cardContent;
     }
 })
