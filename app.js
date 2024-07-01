@@ -11,6 +11,13 @@ const encrypt = {
     'u': 'ufat'
 }
 
+const decrypt = {
+    'ai': 'a',
+    'enter': 'e',
+    'imes': 'i',
+    'ober': 'o',
+    'ufat': 'u'
+}
 
 function disableBtn() {
     btnDecrypt.style.backgroundColor = 'gray';
@@ -59,7 +66,7 @@ btnEncrypt.addEventListener('click', () => {
         for(let word of textInput.value.split(" ")) {
             // console.log(word);
             for(let letter of word){
-                console.log(letter);
+                //console.log(letter);
                 if(vowels.includes(letter)){
                     textEncrypted += encrypt[letter];
                 } else {
@@ -69,16 +76,37 @@ btnEncrypt.addEventListener('click', () => {
             textEncrypted += ' ';
         }
 
-        console.log(textEncrypted);
+        //console.log(textEncrypted);
 
         textOutput.innerHTML = '';
         let cardContent = `
-        <p>${textEncrypted}</p>
-        <br>
+            <p>${textEncrypted}</p>
+            <br>
         `;
         textOutput.innerHTML = cardContent;
 
-        // Revisar el codigo del curso de JS para insertar el boton de copiar, era un metodo que se le ponia un atributo llamado "afterbegin" creo XD
+        const copyButton = `
+            <button class="btnCopy" 
+                style="background-color: white;
+                        color: black;
+                        border: dashed;
+                        width: 90%;"
+            >Copiar</button>
+        `;
+
+        textOutput.insertAdjacentHTML('beforeend', copyButton);
+        //...
+        document.querySelector('.btnCopy').addEventListener('click', () => {
+            // API de portapapeles para copiar el texto
+            navigator.clipboard.writeText(textEncrypted).then(function() {
+                console.log('Texto copiado al portapapeles');
+                alert('Texto copiado al portapapeles');
+            }).catch(function(error) {
+                console.error('Error al copiar el texto: ', error);
+                alert('Hubo un error al copiar el texto');
+            });
+        });
+
     } else {
         cardContent = `
         <img style="width: 80%; border-radius: 8px;" src="images/astronaut.png" alt="">
@@ -87,4 +115,18 @@ btnEncrypt.addEventListener('click', () => {
         <p>Ingresa el texto que deseas encriptar o desencriptar</p>`;
         textOutput.innerHTML = cardContent;
     }
-})
+});
+
+btnDecrypt.addEventListener('click', () => {
+    let textDecrypted = '';
+    const keys = ['ai', 'enter', 'imes', 'ober', 'ufat'];
+    // Se itera por palabra
+    for(let word of textInput.value.split(" ")) {
+        //console.log(word);
+        if(word.includes('ai')){
+            textDecrypted += word.replaceAll('ai', decrypt['ai']);
+        }
+    }
+    console.log(textDecrypted);
+
+});
