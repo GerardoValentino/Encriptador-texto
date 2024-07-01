@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <title>Text Encryptor 🗝️</title>
+  </head>
+  <body>
+    <!--Intentar utilizar un header para el logo⚠️⚠️⚠️-->
+    <div class="container">
+        <div class="logo">
+            <img style="width: 190px;" src="images/logo.png" alt="">
+        </div>
+        <div class="text-input">
+            <div>
+                <textarea
+                    name="entradaTexto"
+                    id="textInput"
+                    cols="32"
+                    rows="10"
+                    placeholder="Ingrese el texto aquí"
+                ></textarea>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; width: 85%; margin:10px;">
+                <i class="fa-solid fa-circle-info"></i>
+                <p style="font-family: 'Sora', sans-serif">
+                    Sólo letras minúsculas y sin acentos
+                </p>
+            </div>
+            
+            <div class="button-container">
+                <button class="btnEncrypt">Encriptar</button>
+                <!--Manejar el boton "desencriptar" con JS-->
+                <button class="btnDecrypt" disabled>Desencriptar</button>
+            </div>
+        </div>
+
+        <div class="text-output" style="display: flex; justify-content: center;">
+          <div class="card">
+              <img style="width: 80%; border-radius: 8px;" src="images/astronaut.png" alt="">
+              <h1>Ningún mensaje fue encontrado</h1>
+              <br>
+              <p>Ingresa el texto que deseas encriptar o desencriptar</p>
+          </div>   
+        </div>
+
+    <script
+      src="https://kit.fontawesome.com/f677559419.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
